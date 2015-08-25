@@ -1,12 +1,13 @@
-=========================
+===========================
 Ultra Fast Template Library
-=========================
+===========================
 
 This project provides a library which allows for very flexible and fast template renderings at the expense of security.
 It uses python code to generate variables which are then substituted in a string.Template.
 
 Examples
 ========
+
 Here's a basic example:
 
 .. code-block:: python
@@ -75,7 +76,7 @@ You should get the following output:
 
 
 Warning
-========
+=======
 
 You can put any kind of python code in the initial section, such as open and read web pages,
 connect to databases, read and parse other files, but this comes at the expense of security,
@@ -84,7 +85,7 @@ which is not advantageous for all projects and needs, so use this library at you
 
 
 Flexibility
-========
+===========
 
 The three required arguments (initial, oncycle and template) may be stored on a database and
 may be retrieved by multiple programs in the network, which parallelize and distribute the task.
