@@ -36,7 +36,7 @@ Here's a basic example:
   b = ${b}
   We live in ${where}"""
 
-  tpl = UFTemplate(initial, oncycle, template, debug=True, where="Indonezia")
+  tpl = UFTemplate(initial, oncycle, template, where="Indonezia")
   for text in tpl.render_many(1):
       print(text)
 
@@ -72,3 +72,21 @@ You should get the following output:
   f(2) = 4
   b = 109
   We live in Indonezia
+
+
+Warning
+========
+
+You can put any kind of python code in the initial section, such as open and read web pages,
+connect to databases, read and parse other files, but this comes at the expense of security,
+as malitious code will be run on the same environment as the interpreter. This is a tradeoff
+which is not advantageous for all projects and needs, so use this library at your own expense.
+
+
+Flexibility
+========
+
+The three required arguments (initial, oncycle and template) may be stored on a database and
+may be retrieved by multiple programs in the network, which parallelize and distribute the task.
+Most templating engines store some of the logic in the template and some of it in the code which
+calls the template render, leading to a big mess. Use uftlib to cut that corner.

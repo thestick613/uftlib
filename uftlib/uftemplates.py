@@ -46,6 +46,7 @@ class UFTemplate(object):
         """ Runs the code from initial once, during initialization, and then,
         run the code in oncycle and render the template using the variables
         obtainted in that context
+
         :param initial: valid python code which is run only once during
         UFTemplate object creation
         :param onycyle: valid python code which is run before rendering the
@@ -96,6 +97,7 @@ class UFTemplate(object):
 
     def render_many(self, howmany=1):
         """ Renders a number of templates and returns an array of strings
+
         :param howmany: Number of times to run the template
         and generate outputs
         """
@@ -142,7 +144,7 @@ f(${i}) = ${s}
 b = ${b}
 We live in ${where}"""
 
-    tpl = UFTemplate(initial, oncycle, template, debug=True, where="Indonezia")
+    tpl = UFTemplate(initial, oncycle, template, where="Indonezia")
     for text in tpl.render_many(3):
         print(text)
 
