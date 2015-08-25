@@ -40,20 +40,28 @@ Here's a basic example:
   for text in tpl.render_many(1):
       print(text)
 
-We can reset the template to it's initial state and obtain the same results:
+We should get the following output:
 
-  tpl.reset()
-  for text in tpl.render_many(2):
-      print(text)
-
-
-You should get the following output:
+::
 
   Now = 2015-08-25 16:09:07.015948
   Render nr. 1
   f(1) = 1
   b = 103
   We live in Indonezia
+
+We can reset the template to it's initial state and obtain the same results:
+
+.. code-block:: python
+
+  tpl.reset()
+  for text in tpl.render_many(2):
+      print(text)
+
+You should get the following output:
+
+::
+
   Now = 2015-08-25 16:09:07.016970
   Render nr. 1
   f(1) = 1
