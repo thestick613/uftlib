@@ -3,6 +3,7 @@
 
 import time
 import logging
+import linecache
 import copy
 
 from string import Template
@@ -63,7 +64,13 @@ class UFTemplate(object):
         self.template = template
 
         self.cycleenv = {}
-        exec(self.initial, self.baseenv)
+        compiled_initial = compile(self.initial, '<string-1>', 'exec')
+        linecache.cache['<string-1>'] = len(self.initial), None, self.initial.split("\n"), '<string-1>'
+
+        try:
+            exec(compiled_initial, self.baseenv)
+        except:
+            raise
 
         for k, v in kwargs.items():
             if self.debug:
@@ -75,13 +82,18 @@ class UFTemplate(object):
             for k, v in self.baseenv.items():
                 logger.debug("\tVariable %s = %s" % (k, repr(v)))
 
-        self.compiled = compile(self.oncycle, '<string>', 'exec')
+        self.compiled = compile(self.oncycle, '<string-2>', 'exec')
+        linecache.cache['<string-2>'] = len(self.oncycle), None, self.oncycle.split("\n"), '<string-2>'
         self.localcontext = ExtraDict(self.baseenv, self.cycleenv)
 
     def render(self):
         """ Renders one template
         """
-        exec(self.compiled, self.localcontext)
+        try:
+            exec(self.compiled, self.localcontext)
+        except:
+            raise
+
         if self.debug:
             logger.debug("On initial, we have the following values:")
             for k, v in self.localcontext.d.items():

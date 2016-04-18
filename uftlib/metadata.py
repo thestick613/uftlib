@@ -14,7 +14,7 @@ create a fast and flexible templating engine.
 package = 'uftlib'
 project = "Ultra Fast Template Library"
 project_no_spaces = project.replace(' ', '')
-version = '0.1'
+version = '0.2'
 description = 'Uses python eval, string.Template to generate text very fast.'
 authors = ['Tudor Aursulesei']
 authors_string = ', '.join(authors)
